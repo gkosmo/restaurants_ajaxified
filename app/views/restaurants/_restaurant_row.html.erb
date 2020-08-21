@@ -1,0 +1,4 @@
+<li>
+      <%= link_to restaurant.name, restaurant_path(restaurant) %>
+      <%= link_to "X", restaurant, method: :delete, remote: true, class: "btn btn-danger" %>
+</li>

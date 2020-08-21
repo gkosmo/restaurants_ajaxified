@@ -1,0 +1,24 @@
+<h1><%= @restaurant.name %> <small><%= @restaurant.address %></small></h1>
+<h2>
+  <%= pluralize @restaurant.reviews.size, "review" %>
+</h2>
+
+<div id="reviews">
+  <% if @restaurant.reviews.blank? %>
+    Be the first to leave a review for <%= @restaurant.name %>
+  <% else %>
+    <% @restaurant.reviews.each do |review| %>
+      <p id="review-<%= review.id%>"><%= review.content %></p>
+
+      <% (1..5).to_a.each do |number| %>
+        <%= link_to number, restaurant_review_path(@restaurant, review, params: { review: { rating: number }}), method: :put, remote: true %>
+      <% end %>
+      <span class="badge badge-secondary p-4"> <%= review.rating %> </span>
+    <% end %>
+
+  <% end %>
+  <%= simple_form_for([ @restaurant, @review ], remote: true) do |f| %>
+    <%= f.input :content, as: :text %>
+    <%= f.button :submit %>
+  <% end %>
+</div>

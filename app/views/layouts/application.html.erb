@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RestaurantsAjaxified</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>RestaurantsAjaxified</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
-  </head>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body  id="<%= params[:controller] %>-<%= params[:action]%>">
+  <div class="container">
+  <div class="flex-center mt-4" data-controller="counter">
+    <div class="badge badge-primary p-2 counter">
+      <span data-target="counter.counter"><%= @restaurant_count %></span>
+    </div>
+
+    <button class="btn btn-outline-secondary" data-action="click->counter#refresh">Refresh counter</button>
+  </div>
+  <%= yield %>
+</div>
+
+</body>
 </html>

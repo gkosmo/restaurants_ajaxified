@@ -1,0 +1,22 @@
+<h1>Restaurants</h1>
+<div data-controller="hello">
+ <h1 data-target="hello.output"></h1>
+
+ <ul data-target="hello.list">
+  <% @restaurants.each do |restaurant| %>
+  <%= render 'restaurant_row', restaurant: restaurant %>
+  <% end %>
+  <p>
+    Name
+    <%= text_field_tag 'name',nil, data: { target: "hello.name"} %>
+
+  </p>
+  <p>
+    Address
+    <%= text_field_tag 'address',nil, data: { target: "hello.address"}  %>
+
+  </p>
+  <span class="btn btn-primary" data-action="click->hello#createRestaurant"> Create Restaurant </span>
+</ul>
+
+</div>
